@@ -72,7 +72,7 @@ docker_test_lint:
 		-e ENABLE_PARALLEL=1 \
 		-v "$(CURDIR)":/workspace \
 		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
-		/usr/local/bin/test_lint.sh
+		/bin/bash -c 'sed -i "24s/init/init -upgrade/" /usr/local/bin/terraform_validate && /usr/local/bin/test_lint.sh'
 
 # Generate documentation
 .PHONY: docker_generate_docs

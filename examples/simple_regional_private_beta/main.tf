@@ -18,14 +18,8 @@ locals {
   cluster_type = "simple-regional-private-beta"
 }
 
-provider "google" {
-  version = "~> 3.42.0"
-  region  = var.region
-}
-
 provider "google-beta" {
-  version = "~> 3.87.0"
-  region  = var.region
+  region = var.region
 }
 
 data "google_client_config" "default" {}

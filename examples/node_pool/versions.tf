@@ -14,6 +14,18 @@
  * limitations under the License.
  */
 
+
 terraform {
-  required_version = ">=0.12"
+  required_version = ">=0.13"
+
+  required_providers {
+    google-beta = {
+      source  = "hashicorp/google-beta"
+      version = "~> 4.3.0"
+    }
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "~> 2.0"
+    }
+  }
 }

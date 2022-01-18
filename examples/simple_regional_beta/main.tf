@@ -18,11 +18,6 @@ locals {
   cluster_type = "simple-regional-beta"
 }
 
-provider "google-beta" {
-  version = "~> 3.87.0"
-  region  = var.region
-}
-
 data "google_client_config" "default" {}
 
 provider "kubernetes" {
@@ -57,8 +52,8 @@ module "gke" {
   release_channel             = "REGULAR"
 
   # Disable workload identity
-  identity_namespace = null
-  node_metadata      = "UNSPECIFIED"
+  workload_pool = null
+  mode          = "UNSPECIFIED"
 
   # Enable Dataplane Setup
   datapath_provider = "ADVANCED_DATAPATH"

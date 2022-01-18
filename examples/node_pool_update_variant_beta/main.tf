@@ -18,12 +18,6 @@ locals {
   cluster_type = "node-pool-update-variant-beta"
 }
 
-provider "google-beta" {
-  version     = "~> 3.87.0"
-  credentials = file(var.credentials_path)
-  region      = var.region
-}
-
 data "google_compute_subnetwork" "subnetwork" {
   name    = var.subnetwork
   project = var.project_id

@@ -14,10 +14,6 @@
  * limitations under the License.
  */
 
-provider "google" {
-  version = "~> 3.45.0"
-}
-
 data "google_client_config" "default" {}
 
 provider "kubernetes" {
@@ -28,7 +24,7 @@ provider "kubernetes" {
 
 module "gcp-network" {
   source       = "terraform-google-modules/network/google"
-  version      = "~> 3.1"
+  version      = "~> 4.0.1"
   project_id   = var.project_id
   network_name = var.network
 

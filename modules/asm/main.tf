@@ -62,7 +62,7 @@ resource "google_project_iam_member" "asm_iam" {
 
 module "asm-services" {
   source  = "terraform-google-modules/project-factory/google//modules/project_services"
-  version = "~> 10.0"
+  version = "~> 11.3.1"
   count   = var.enable_gcp_apis ? 1 : 0
 
   project_id                  = var.project_id

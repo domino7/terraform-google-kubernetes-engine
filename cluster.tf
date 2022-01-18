@@ -98,9 +98,6 @@ resource "google_container_cluster" "primary" {
   }
 
   master_auth {
-    username = var.basic_auth_username
-    password = var.basic_auth_password
-
     client_certificate_config {
       issue_client_certificate = var.issue_client_certificate
     }
@@ -153,10 +150,10 @@ resource "google_container_cluster" "primary" {
       service_account = lookup(var.node_pools[0], "service_account", local.service_account)
 
       dynamic "workload_metadata_config" {
-        for_each = local.cluster_node_metadata_config
+        for_each = local.cluster_mode_config
 
         content {
-          node_metadata = workload_metadata_config.value.node_metadata
+          mode = workload_metadata_config.value.mode
         }
       }
 
@@ -202,7 +199,7 @@ resource "google_container_cluster" "primary" {
     for_each = local.cluster_workload_identity_config
 
     content {
-      identity_namespace = workload_identity_config.value.identity_namespace
+      workload_pool = workload_identity_config.value.workload_pool
     }
   }
 
@@ -327,10 +324,10 @@ resource "google_container_node_pool" "pools" {
     ]
 
     dynamic "workload_metadata_config" {
-      for_each = local.cluster_node_metadata_config
+      for_each = local.cluster_mode_config
 
       content {
-        node_metadata = lookup(each.value, "node_metadata", workload_metadata_config.value.node_metadata)
+        mode = lookup(each.value, "mode", workload_metadata_config.value.mode)
       }
     }
 

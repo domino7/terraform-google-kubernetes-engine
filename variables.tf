@@ -370,7 +370,7 @@ variable "authenticator_security_group" {
   default     = null
 }
 
-variable "node_metadata" {
+variable "mode" {
   description = "Specifies how node metadata is exposed to the workload running on the node"
   default     = "GKE_METADATA_SERVER"
   type        = string
@@ -386,7 +386,7 @@ variable "database_encryption" {
   }]
 }
 
-variable "identity_namespace" {
+variable "workload_pool" {
   description = "Workload Identity namespace. (Default value of `enabled` automatically sets project based namespace `[project_id].svc.id.goog`)"
   type        = string
   default     = "enabled"
